@@ -37,7 +37,7 @@ jobs:
         run: npm run test
 
 
-  buil-docker-image-an-push:
+  build-docker-image-and-push:
     
     runs-on: ubuntu-latest
     needs: run-unit-test-job
@@ -71,8 +71,19 @@ jobs:
       - name: push docker image latest
         run: docker push ${{ env.DOCKER_IMAGE}}:latest
 
-
-
+  deploy-to-vps:
+     
+    runs-on: ubuntu-latest
+    needs: build-docker-image-and-push
+    steps:
+      - name: execute remote ssh commands using password
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: user
+          password: ${{ secrets.VPS_PASSWORD }}
+          
+          script: whoami
 
     # 2 build docker image and push
         # checkout code
