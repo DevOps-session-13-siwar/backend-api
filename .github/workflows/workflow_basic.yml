@@ -83,7 +83,10 @@ jobs:
           username: user
           password: ${{ secrets.VPS_PASSWORD }}
           
-          script: whoami
+          script: | 
+            cd /home/user/session13/devops-script/backend-api/dev
+            sudo docker compose pull ${{ env.DOCKER_IMAGE}}
+            sudo docker compose up -d --force-recreate --remove-orphans api
 
     # 2 build docker image and push
         # checkout code
