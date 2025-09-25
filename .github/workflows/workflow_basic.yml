@@ -31,7 +31,9 @@ jobs:
         #tag docker image with version
         #login in docker hub
         # push docker image
+
     # 3 deploy to vps
+        
         #ssh connection to vps
         # pull docker image
         # run docker container
