@@ -1,27 +1,33 @@
 name: Basic Workflow develop
 
-
-#triger
 on:
   push:
-     branches:
-        -main
+    branches:
+      - main
+
+jobs:
+  run-unit-test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+       
+
+#triger
+
 
 #push on main branch
 
 
-jobs:
+
     #1 unit test 
-     run-unit-test-job:
-       runs-on: ubuntu-latest
+    
 
-
-       steps:
+     
        #checkout code: 
 
-          - name: clone source code
-            uses: actions/checkout@v5
-
+          
        #run unit test
      
 
