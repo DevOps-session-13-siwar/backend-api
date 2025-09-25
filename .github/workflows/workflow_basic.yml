@@ -34,7 +34,17 @@ jobs:
         run: npm run test
 
 
+  buil-docker-image-an-push:
+    
+    runs-on: ubuntu-latest
+    needs: run-unit-test-job
+    steps:
+      - name: clone source code to runner
+        uses: actions/checkout@v5
 
+      - name: build docker image
+        run: docker build -t siwart8/api-session13 .
+      - run: docker images
     # 2 build docker image and push
         # checkout code
 
