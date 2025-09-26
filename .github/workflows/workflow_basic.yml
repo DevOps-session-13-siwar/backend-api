@@ -36,6 +36,21 @@ jobs:
       - name: run unit test
         run: npm run test
 
+  sonarqube-code-quality-scan-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Source Code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
+
 
   build-docker-image-and-push:
     
