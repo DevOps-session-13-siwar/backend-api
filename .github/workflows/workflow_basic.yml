@@ -86,7 +86,7 @@ jobs:
               SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK}}
       - name: notify slack on failure
         if: failure()
-        uses: slackapi/clack-github-action@v1.23.0
+        uses: slackapi/slack-github-action@v1.23.0
         with:
           payload: |
             {
