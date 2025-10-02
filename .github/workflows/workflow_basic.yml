@@ -25,16 +25,27 @@ env:
   
 jobs:
   run-unit-test-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: clone source code to runner
-        uses: actions/checkout@v5
-      
-      - name: install dependencies
-        run: npm i
-       
-      - name: run unit test
-        run: npm run test
+    
+   runs-on: ubuntu-latest
+   steps:
+    - name: clone source code to runner
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Clean npm cache
+      run: npm cache clean --force
+
+    - name: install dependencies
+      run: npm install --legacy-peer-deps
+
+    - name: run unit test
+      run: npm run test
+
 
   sonarqube-code-quality-scan-job:
     runs-on: ubuntu-latest
